@@ -1,22 +1,23 @@
 
 import streamlit as st
 from urllib.parse import quote
+from datetime import datetime
 
-# --------------------------------------------------
+# =====================================================
 # VIN-WATT | Premium Clean Energy Website
 # Company: Vintechnologies
-# No API keys or paid backend required
-# --------------------------------------------------
+# WhatsApp enquiries only - no API keys required
+# =====================================================
 
 st.set_page_config(
-    page_title="VIN-WATT | Sustainable Charging Solutions",
+    page_title="VIN-WATT | Clean Energy Solutions",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
 
-COMPANY = "Vintechnologies"
 BRAND = "VIN-WATT"
+COMPANY = "Vintechnologies"
 PHONE = "9842159555"
 WHATSAPP = "919842159555"
 EMAIL = "vintechmdu@gmail.com"
@@ -26,292 +27,373 @@ ADDRESS = (
 )
 TAGLINE = "Sustainable Charging Solutions for the Road Ahead."
 
-HERO_IMAGE = (
-    "https://images.unsplash.com/photo-1593941707882-a5ba14938c7"
-    "?auto=format&fit=crop&w=2000&q=85"
-)
 EV_IMAGE = (
     "https://images.unsplash.com/photo-1593941707882-a5ba14938c7"
-    "?auto=format&fit=crop&w=1000&q=85"
+    "?auto=format&fit=crop&w=1200&q=85"
 )
 SOLAR_IMAGE = (
     "https://images.unsplash.com/photo-1509391366360-2e959784a276"
-    "?auto=format&fit=crop&w=1000&q=85"
+    "?auto=format&fit=crop&w=1200&q=85"
 )
-ENERGY_IMAGE = (
+CLEAN_ENERGY_IMAGE = (
     "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e"
     "?auto=format&fit=crop&w=1600&q=85"
 )
 
+# IMPORTANT: All website CSS is inside this <style> block.
 st.markdown(
     """
-    <meta name="theme-color" content="#103c30">
     <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
     :root {
         --green: #103c30;
-        --green-dark: #09291f;
-        --lime: #c6f36b;
-        --ink: #14251f;
-        --muted: #66756e;
-        --paper: #f7f8f4;
-        --line: #e5eae3;
+        --deep-green: #08271e;
+        --lime: #c8f36a;
+        --ink: #17251f;
+        --muted: #68766e;
+        --paper: #f6f8f3;
+        --line: #e3e9e1;
     }
 
     html { scroll-behavior: smooth; }
+
     .stApp {
         background: var(--paper);
         color: var(--ink);
         font-family: 'DM Sans', sans-serif;
     }
-    [data-testid="stHeader"] { background: transparent; }
-    [data-testid="stToolbar"] { right: 1rem; }
+
+    [data-testid="stHeader"] {
+        background: transparent;
+    }
+
     .block-container {
         max-width: 1240px;
-        padding: 1.4rem 2rem 3rem;
+        padding: 1.5rem 2rem 3rem;
     }
+
     h1, h2, h3, h4 {
         font-family: 'Manrope', sans-serif !important;
-        letter-spacing: -0.045em;
         color: var(--ink);
+        letter-spacing: -0.04em;
     }
-    p, li { line-height: 1.7; }
-    a { text-decoration: none; }
 
-    /* Brand header */
+    p {
+        line-height: 1.7;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
     .brandbar {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        gap: 1rem;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
         padding: 8px 0 22px;
+        margin-bottom: 26px;
         border-bottom: 1px solid var(--line);
-        margin-bottom: 28px;
     }
-    .brandmark {
+
+    .brand-logo {
         font-family: 'Manrope', sans-serif;
-        font-size: 1.65rem;
         font-weight: 800;
-        letter-spacing: -0.06em;
+        font-size: 1.8rem;
+        letter-spacing: -0.07em;
         color: var(--green);
+        line-height: 1.1;
     }
-    .brandmark span { color: #76a934; }
-    .brandtag {
-        color: var(--muted);
-        font-size: .76rem;
+
+    .brand-logo span {
+        color: #7ba83b;
+    }
+
+    .brand-caption {
+        font-size: .72rem;
         letter-spacing: .12em;
         text-transform: uppercase;
-        font-weight: 700;
+        color: var(--muted);
+        margin-top: 5px;
     }
+
     .navlinks {
         display: flex;
         flex-wrap: wrap;
         gap: 22px;
-        justify-content: flex-end;
-        font-size: .88rem;
-        font-weight: 600;
+        font-size: .9rem;
+        font-weight: 700;
     }
-    .navlinks a { color: var(--ink); }
-    .navlinks a:hover { color: #60952d; }
 
-    /* Hero */
+    .navlinks a {
+        color: var(--ink);
+    }
+
+    .navlinks a:hover {
+        color: #628e35;
+    }
+
     .hero {
         background:
-          linear-gradient(90deg, rgba(5,31,23,.96) 0%,
-          rgba(5,31,23,.84) 48%, rgba(5,31,23,.12) 100%),
-          url("HERO_REPLACE") center / cover no-repeat;
-        background-color: var(--green-dark);
-        min-height: 490px;
-        border-radius: 24px;
-        padding: clamp(28px, 5vw, 68px);
+          linear-gradient(90deg, rgba(5,31,23,.95),
+          rgba(5,31,23,.77) 55%, rgba(5,31,23,.25)),
+          url("https://images.unsplash.com/photo-1593941707882-a5ba14938c7?auto=format&fit=crop&w=1800&q=85");
+        background-color: var(--deep-green);
+        background-size: cover;
+        background-position: center;
+        color: white;
+        min-height: 460px;
+        border-radius: 22px;
+        padding: clamp(28px, 5vw, 65px);
         display: flex;
         align-items: center;
         overflow: hidden;
-        color: white;
     }
-    .hero-content { max-width: 670px; }
+
+    .hero-content {
+        max-width: 690px;
+    }
+
     .eyebrow {
-        text-transform: uppercase;
-        letter-spacing: .18em;
-        font-size: .73rem;
-        font-weight: 700;
         color: var(--lime);
+        font-size: .75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: .17em;
         margin-bottom: 18px;
     }
+
     .hero h1 {
-        color: white !important;
-        font-size: clamp(2.6rem, 5.5vw, 5rem);
-        line-height: 1.04;
+        color: #ffffff !important;
+        font-size: clamp(2.8rem, 6vw, 5.2rem);
+        line-height: 1.03;
         margin: 0 0 22px;
         font-weight: 800;
     }
+
     .hero p {
-        color: rgba(255,255,255,.82);
-        font-size: 1.05rem;
-        max-width: 550px;
+        color: rgba(255,255,255,.85);
+        max-width: 570px;
+        font-size: 1.04rem;
         margin-bottom: 28px;
     }
-    .hero-cta {
+
+    .hero-button {
         display: inline-block;
-        padding: 14px 21px;
         background: var(--lime);
-        color: var(--green-dark) !important;
+        color: var(--deep-green) !important;
+        padding: 14px 22px;
         border-radius: 8px;
         font-weight: 800;
-        font-size: .92rem;
     }
-    .hero-cta:hover { background: #d8ff91; }
 
-    /* Sections and cards */
-    .section-kicker {
-        color: #5b8b35;
-        text-transform: uppercase;
-        letter-spacing: .15em;
+    .section {
+        padding-top: 42px;
+        padding-bottom: 18px;
+    }
+
+    .kicker {
+        color: #628e35;
         font-size: .73rem;
         font-weight: 800;
-        margin-bottom: 9px;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
     }
-    .section-heading {
-        font-size: clamp(2rem, 3.5vw, 3.1rem);
+
+    .section-title {
+        font-size: clamp(2rem, 4vw, 3.15rem);
         line-height: 1.12;
         margin: 0 0 14px;
     }
-    .section-copy {
+
+    .section-description {
         color: var(--muted);
-        max-width: 680px;
+        max-width: 700px;
         margin-bottom: 24px;
     }
+
     .product-card {
         background: white;
         border: 1px solid var(--line);
-        border-radius: 18px;
+        border-radius: 17px;
         overflow: hidden;
         height: 100%;
     }
+
     .product-card img {
-        width: 100%;
-        height: 220px;
-        object-fit: cover;
         display: block;
+        width: 100%;
+        height: 225px;
+        object-fit: cover;
     }
-    .product-body { padding: 23px; }
-    .product-label {
-        color: #5b8b35;
-        text-transform: uppercase;
-        letter-spacing: .13em;
-        font-size: .69rem;
+
+    .product-content {
+        padding: 23px;
+    }
+
+    .product-tag {
+        color: #628e35;
+        font-size: .7rem;
         font-weight: 800;
+        letter-spacing: .12em;
+        text-transform: uppercase;
     }
-    .product-body h3 {
-        font-size: 1.4rem;
+
+    .product-content h3 {
+        font-size: 1.5rem;
         margin: 10px 0;
     }
-    .product-body p {
+
+    .product-content p {
         color: var(--muted);
         font-size: .94rem;
     }
-    .text-link {
+
+    .product-link {
         display: inline-block;
-        color: var(--green);
+        color: var(--green) !important;
         font-weight: 800;
-        margin-top: 6px;
+        margin-top: 8px;
     }
-    .feature-panel {
+
+    .dark-panel {
         background: var(--green);
         color: white;
         padding: clamp(25px, 4vw, 46px);
         border-radius: 20px;
+        margin-top: 42px;
     }
-    .feature-panel h2 { color: white !important; }
-    .feature-panel p { color: rgba(255,255,255,.76); }
-    .feature-item {
+
+    .dark-panel h2 {
+        color: white !important;
+    }
+
+    .dark-panel p {
+        color: rgba(255,255,255,.78);
+    }
+
+    .dark-panel .kicker {
+        color: var(--lime);
+    }
+
+    .benefit {
         border-top: 1px solid rgba(255,255,255,.2);
         padding: 16px 0;
+        color: rgba(255,255,255,.82);
     }
-    .feature-item strong { color: white; }
-    .number {
-        font-family: 'Manrope', sans-serif;
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: var(--lime);
-        margin-bottom: 5px;
+
+    .benefit strong {
+        color: white;
     }
-    .contact-panel {
+
+    .contact-card {
         background: white;
         border: 1px solid var(--line);
-        border-radius: 20px;
-        padding: clamp(22px, 4vw, 42px);
+        border-radius: 18px;
+        padding: 26px;
+        height: 100%;
     }
-    .contact-line {
-        padding: 13px 0;
+
+    .contact-row {
+        padding: 14px 0;
         border-bottom: 1px solid var(--line);
         overflow-wrap: anywhere;
     }
-    .contact-line:last-child { border-bottom: 0; }
-    .contact-line strong {
-        display: block;
-        margin-bottom: 4px;
+
+    .contact-row:last-child {
+        border-bottom: 0;
     }
-    .contact-line span { color: var(--muted); font-size: .92rem; }
-    .footer {
-        margin-top: 38px;
-        border-top: 1px solid var(--line);
-        padding: 24px 0 8px;
+
+    .contact-row strong {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .contact-row span {
+        color: var(--muted);
+        font-size: .92rem;
+    }
+
+    .note {
         color: var(--muted);
         font-size: .82rem;
     }
 
-    /* Streamlit controls */
-    div.stButton > button, div.stLinkButton > a,
+    .footer {
+        border-top: 1px solid var(--line);
+        margin-top: 42px;
+        padding: 24px 0 8px;
+        color: var(--muted);
+        font-size: .83rem;
+    }
+
+    div.stButton > button,
+    div.stLinkButton > a,
     div[data-testid="stFormSubmitButton"] > button {
         border-radius: 8px !important;
-        min-height: 46px;
+        min-height: 45px;
         font-weight: 700 !important;
     }
+
     div.stButton > button[kind="primary"],
     div[data-testid="stFormSubmitButton"] > button[kind="primary"] {
         background: var(--green) !important;
-        border-color: var(--green) !important;
         color: white !important;
+        border-color: var(--green) !important;
     }
+
     div.stLinkButton > a {
         background: var(--green) !important;
-        border-color: var(--green) !important;
         color: white !important;
+        border-color: var(--green) !important;
     }
-    input, textarea {
-        border-radius: 8px !important;
-    }
-    [data-testid="stForm"] {
-        border: 0;
-        padding: 0;
-    }
+
     @media (max-width: 700px) {
-        .block-container { padding: 1rem 1rem 2rem; }
-        .brandbar { align-items: flex-start; flex-direction: column; }
-        .navlinks { justify-content: flex-start; gap: 14px; }
-        .hero { min-height: 440px; border-radius: 16px; }
-        .hero h1 { font-size: 2.65rem; }
-        .hero p { font-size: .97rem; }
-        .product-card img { height: 190px; }
+        .block-container {
+            padding: 1rem 1rem 2rem;
+        }
+
+        .brandbar {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .navlinks {
+            gap: 15px;
+        }
+
+        .hero {
+            min-height: 430px;
+            border-radius: 15px;
+        }
+
+        .hero h1 {
+            font-size: 2.7rem;
+        }
+
+        .product-card img {
+            height: 190px;
+        }
     }
     </style>
-    """.replace("HERO_REPLACE", HERO_IMAGE),
+    """,
     unsafe_allow_html=True,
 )
 
-# Header
+# ---------------- Header ----------------
 st.markdown(
     """
     <div class="brandbar">
       <div>
-        <div class="brandmark">VIN<span>•</span>WATT</div>
-        <div class="brandtag">A Vintechnologies brand</div>
+        <div class="brand-logo">VIN<span>•</span>WATT</div>
+        <div class="brand-caption">A Vintechnologies brand</div>
       </div>
       <div class="navlinks">
         <a href="#solutions">Solutions</a>
-        <a href="#about">Why VIN-WATT</a>
+        <a href="#about">About us</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -319,143 +401,128 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Hero
+# ---------------- Hero ----------------
 st.markdown(
     f"""
     <section class="hero">
       <div class="hero-content">
         <div class="eyebrow">Powering a cleaner tomorrow</div>
         <h1>Move forward.<br>Charge smarter.</h1>
-        <p>{TAGLINE} Explore EV charging and solar energy solutions
-        designed to support a more connected, energy-conscious future.</p>
-        <a class="hero-cta" href="#solutions">Explore our solutions&nbsp; ↗</a>
+        <p>{TAGLINE} Discover EV charging and solar energy solutions
+        for homes, businesses and future-focused projects.</p>
+        <a class="hero-button" href="#solutions">Explore our solutions &nbsp; ↗</a>
       </div>
     </section>
     """,
     unsafe_allow_html=True,
 )
 
-st.write("")
-st.write("")
-
-# Intro
+# ---------------- Solutions ----------------
 st.markdown(
     """
-    <div id="solutions" class="section-kicker">Our solutions</div>
-    <h2 class="section-heading">Clean energy, made practical.</h2>
-    <p class="section-copy">
-      From electric mobility to solar power, VIN-WATT brings together
-      forward-looking energy solutions for homes, businesses and projects.
-      Contact our team to discuss the right setup for your requirements.
-    </p>
-    """,
-    unsafe_allow_html=True,
-)
-
-left, right = st.columns(2, gap="large")
-
-with left:
-    st.markdown(
-        f"""
-        <div class="product-card">
-          <img src="{EV_IMAGE}" alt="Electric vehicle charging solution">
-          <div class="product-body">
-            <div class="product-label">01 / Electric mobility</div>
-            <h3>EV charging solutions</h3>
-            <p>Explore charging solutions for residential, commercial
-            and workplace requirements. Ask our team about suitable
-            charger types and installation needs.</p>
-            <a class="text-link" href="#contact">Enquire about EV charging ↗</a>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-with right:
-    st.markdown(
-        f"""
-        <div class="product-card">
-          <img src="{SOLAR_IMAGE}" alt="Solar energy panels">
-          <div class="product-body">
-            <div class="product-label">02 / Solar energy</div>
-            <h3>Solar power solutions</h3>
-            <p>Discuss rooftop solar and clean-energy options for your
-            home or business, based on your site and energy requirements.</p>
-            <a class="text-link" href="#contact">Enquire about solar ↗</a>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-st.write("")
-st.write("")
-
-# About / benefits
-st.markdown(
-    """
-    <div id="about" class="feature-panel">
-      <div class="section-kicker">The VIN-WATT approach</div>
-      <h2 class="section-heading">Built around your energy needs.</h2>
-      <p>We focus on practical conversations, clear product information
-      and solutions aligned with each customer's requirements.</p>
-      <div class="feature-item">
-        <strong>01 — Understand</strong><br>
-        Tell us about your home, business, vehicle or project.
-      </div>
-      <div class="feature-item">
-        <strong>02 — Explore</strong><br>
-        Discuss available products and possible configurations with our team.
-      </div>
-      <div class="feature-item">
-        <strong>03 — Connect</strong><br>
-        Get in touch directly to discuss the next steps for your enquiry.
-      </div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-st.write("")
-st.write("")
-
-# Brand statement
-st.markdown(
-    f"""
-    <div style="
-      border-radius:18px;
-      padding:32px;
-      background:#edf1e8;
-      background-image:linear-gradient(90deg,rgba(237,241,232,.97),
-      rgba(237,241,232,.86)),url('{ENERGY_IMAGE}');
-      background-position:center;
-      background-size:cover;">
-      <div class="section-kicker">Our purpose</div>
-      <h2 class="section-heading" style="max-width:750px;">
-        Better energy choices begin with a conversation.
-      </h2>
-      <p class="section-copy" style="margin-bottom:0;">
-        VIN-WATT by Vintechnologies — here to help you explore
-        charging and solar solutions for the road ahead.
+    <div id="solutions" class="section">
+      <div class="kicker">What we do</div>
+      <h2 class="section-title">Clean energy, made practical.</h2>
+      <p class="section-description">
+        Explore our EV charging and solar energy solutions.
+        Tell us what you need, and our team can discuss suitable options
+        for your project.
       </p>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-st.write("")
-st.write("")
+ev_col, solar_col = st.columns(2, gap="large")
 
-# Contact and enquiry
+with ev_col:
+    st.markdown(
+        f"""
+        <div class="product-card">
+          <img src="{EV_IMAGE}" alt="EV charging station">
+          <div class="product-content">
+            <div class="product-tag">01 / Electric mobility</div>
+            <h3>EV charging solutions</h3>
+            <p>Explore charging options for homes, workplaces,
+            commercial locations and other projects. Ask us about
+            charger types and installation requirements.</p>
+            <a class="product-link" href="#contact">Enquire about EV charging ↗</a>
+          </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+with solar_col:
+    st.markdown(
+        f"""
+        <div class="product-card">
+          <img src="{SOLAR_IMAGE}" alt="Solar panels">
+          <div class="product-content">
+            <div class="product-tag">02 / Solar energy</div>
+            <h3>Solar power solutions</h3>
+            <p>Discuss rooftop solar and clean-energy options for your
+            home or business based on your location and energy needs.</p>
+            <a class="product-link" href="#contact">Enquire about solar ↗</a>
+          </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+# ---------------- About ----------------
 st.markdown(
     """
-    <div id="contact" class="section-kicker">Let's connect</div>
-    <h2 class="section-heading">Tell us what you need.</h2>
-    <p class="section-copy">
-      Share a few details below. Your enquiry will be prepared as a
-      WhatsApp message for you to review and send.
-    </p>
+    <div id="about" class="dark-panel">
+      <div class="kicker">The VIN-WATT approach</div>
+      <h2 class="section-title">Energy solutions built around you.</h2>
+      <p>We believe the right solution begins with understanding your
+      needs and having a clear conversation about your project.</p>
+      <div class="benefit">
+        <strong>01 — Understand</strong><br>
+        Tell us about your home, business or project.
+      </div>
+      <div class="benefit">
+        <strong>02 — Explore</strong><br>
+        Discuss products and possible configurations with our team.
+      </div>
+      <div class="benefit">
+        <strong>03 — Connect</strong><br>
+        Contact us directly to discuss your next steps.
+      </div>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# ---------------- Brand statement ----------------
+st.markdown(
+    f"""
+    <div style="
+      margin-top:36px;
+      padding:32px;
+      border-radius:18px;
+      background:linear-gradient(90deg,rgba(237,241,232,.96),
+      rgba(237,241,232,.82)),url('{CLEAN_ENERGY_IMAGE}') center/cover;">
+      <div class="kicker">Our purpose</div>
+      <h2 class="section-title">Better energy choices start here.</h2>
+      <p class="section-description">{TAGLINE}</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
+# ---------------- Contact ----------------
+st.markdown(
+    """
+    <div id="contact" class="section">
+      <div class="kicker">Let's connect</div>
+      <h2 class="section-title">Tell us what you need.</h2>
+      <p class="section-description">
+        Complete the enquiry form to prepare a WhatsApp message.
+        You can review it before choosing to send it.
+      </p>
+    </div>
     """,
     unsafe_allow_html=True,
 )
@@ -465,22 +532,22 @@ contact_col, form_col = st.columns([0.9, 1.1], gap="large")
 with contact_col:
     st.markdown(
         f"""
-        <div class="contact-panel">
-          <div class="brandmark">VIN<span>•</span>WATT</div>
-          <p style="color:#66756e;">{COMPANY}</p>
-          <div class="contact-line">
-            <strong>Call us</strong>
+        <div class="contact-card">
+          <div class="brand-logo">VIN<span>•</span>WATT</div>
+          <p class="note">{COMPANY}</p>
+          <div class="contact-row">
+            <strong>Phone</strong>
             <span>{PHONE}</span>
           </div>
-          <div class="contact-line">
+          <div class="contact-row">
             <strong>Email</strong>
             <span>{EMAIL}</span>
           </div>
-          <div class="contact-line">
-            <strong>Visit us</strong>
+          <div class="contact-row">
+            <strong>Address</strong>
             <span>{ADDRESS}</span>
           </div>
-          <div class="contact-line">
+          <div class="contact-row">
             <strong>Our promise</strong>
             <span>{TAGLINE}</span>
           </div>
@@ -488,79 +555,80 @@ with contact_col:
         """,
         unsafe_allow_html=True,
     )
+
     st.write("")
     st.link_button(
-        "Chat with VIN-WATT on WhatsApp",
-        f"https://wa.me/{WHATSAPP}?text={quote('Hello VIN-WATT, I would like to know more about your EV charging and solar solutions.')}",
+        "Chat on WhatsApp",
+        "https://wa.me/" + WHATSAPP + "?text=" + quote(
+            "Hello VIN-WATT, I would like to know more about your solutions."
+        ),
         use_container_width=True,
     )
     st.link_button(
         "Call VIN-WATT",
-        f"tel:+91{PHONE}",
+        "tel:+91" + PHONE,
         use_container_width=True,
     )
     st.link_button(
         "Email VIN-WATT",
-        f"mailto:{EMAIL}",
+        "mailto:" + EMAIL,
         use_container_width=True,
     )
 
 with form_col:
-    st.markdown('<div class="contact-panel">', unsafe_allow_html=True)
-    with st.form("vinwatt_enquiry_form", clear_on_submit=False):
-        customer_name = st.text_input(
-            "Your name *",
-            placeholder="Enter your name",
-        )
-        customer_phone = st.text_input(
+    st.markdown('<div class="contact-card">', unsafe_allow_html=True)
+
+    with st.form("vinwatt_enquiry", clear_on_submit=False):
+        name = st.text_input("Your name *", placeholder="Enter your name")
+        phone = st.text_input(
             "Your phone number *",
             placeholder="Enter your contact number",
         )
-        enquiry_type = st.selectbox(
+        interest = st.selectbox(
             "What are you interested in?",
             [
                 "EV charging solution",
                 "Solar energy solution",
-                "EV charging + solar",
+                "EV charging and solar",
                 "Business or dealership enquiry",
                 "Other enquiry",
             ],
         )
-        customer_location = st.text_input(
-            "Your city / location",
+        location = st.text_input(
+            "City / location",
             placeholder="e.g. Madurai",
         )
-        customer_message = st.text_area(
-            "Tell us about your requirement",
-            placeholder="Share your project details or questions...",
+        details = st.text_area(
+            "Your requirements",
+            placeholder="Tell us a little about your project...",
             height=120,
         )
         submitted = st.form_submit_button(
             "Prepare WhatsApp enquiry ↗",
-            use_container_width=True,
             type="primary",
+            use_container_width=True,
         )
 
     if submitted:
-        if not customer_name.strip() or not customer_phone.strip():
+        if not name.strip() or not phone.strip():
             st.warning("Please enter your name and phone number.")
         else:
             message = (
                 "Hello VIN-WATT / Vintechnologies,\n\n"
                 "I would like to make an enquiry.\n\n"
-                f"Name: {customer_name.strip()}\n"
-                f"Phone: {customer_phone.strip()}\n"
-                f"Interest: {enquiry_type}\n"
-                f"Location: {customer_location.strip() or 'Not provided'}\n"
-                f"Requirement: {customer_message.strip() or 'Not provided'}\n\n"
+                f"Name: {name.strip()}\n"
+                f"Phone: {phone.strip()}\n"
+                f"Interest: {interest}\n"
+                f"Location: {location.strip() or 'Not provided'}\n"
+                f"Requirements: {details.strip() or 'Not provided'}\n\n"
                 "Please contact me with more details."
             )
             whatsapp_url = (
-                f"https://wa.me/{WHATSAPP}?text={quote(message)}"
+                "https://wa.me/" + WHATSAPP + "?text=" + quote(message)
             )
             st.success(
-                "Your message is ready. Open WhatsApp and press Send "
-                "to submit your enquiry."
+                "Your message is prepared. Open WhatsApp and press Send "
+                "when you are ready."
             )
             st.link_button(
                 "Open WhatsApp and review message",
@@ -570,19 +638,17 @@ with form_col:
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-# Footer
+# ---------------- Footer ----------------
 st.markdown(
     f"""
     <div class="footer">
       <strong style="color:#103c30;">VIN•WATT</strong> &nbsp;|&nbsp;
       {COMPANY}<br>
       {TAGLINE}<br><br>
-      © {2026} Vintechnologies. All rights reserved.
-      <br>
-      <span style="font-size:.75rem;">
-        Product and background images are illustrative.
-        Confirm product specifications, availability and installation
-        requirements with our team.
+      © {datetime.now().year} Vintechnologies. All rights reserved.<br><br>
+      <span class="note">
+        Images are illustrative. Confirm product specifications,
+        availability and installation requirements with our team.
       </span>
     </div>
     """,
