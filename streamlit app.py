@@ -416,6 +416,8 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+st.image("vinwatt-ev-ad.png", use_container_width=True)
+st.write("")
 
 # ---------------- Solutions ----------------
 st.markdown(
