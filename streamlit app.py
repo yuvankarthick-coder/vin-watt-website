@@ -407,7 +407,7 @@ st.markdown(
     <section class="hero">
       <div class="hero-content">
         <div class="eyebrow">Powering a cleaner tomorrow</div>
-        <h1>Move forward.<br>Charge smarter.</h1>
+        <h1>The future <br>moves on VIN-WATT</h1>
         <p>{TAGLINE} Discover EV charging and solar energy solutions
         for homes, businesses and future-focused projects.</p>
         <a class="hero-button" href="#solutions">Explore our solutions &nbsp; ↗</a>
